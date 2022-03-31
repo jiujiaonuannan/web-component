@@ -11,7 +11,6 @@
       }
     </style>
   </head>
-
   <body>
     <div></div>
     <hello-world></hello-world>
@@ -20,22 +19,18 @@
       class HelloWorld extends HTMLElement {
         constructor() {
           super();
-          // 关闭 shadow DOM
           this.attachShadow({ mode: "open" });
-
-          const d = document.createElement("div");
-          const s = document.createElement("style");
-          s.innerHTML = `h1 {
+          this.shadowRoot.innerHTML = `
+                    <style>
+                        h1 {
+                            font-size: 30px;
                             display: block;
                             padding: 10px;
                             background-color: #eee;
-                        }`;
-          d.innerHTML = `
+                        }
+                    </style>
                     <h1>Hello World! 自定义组件内部</h1>
                 `;
-
-          this.appendChild(s);
-          this.appendChild(d);
         }
 
         tag = "hello-world";
